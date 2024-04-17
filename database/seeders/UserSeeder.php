@@ -22,9 +22,8 @@ class UserSeeder extends Seeder
                 'password' => Hash::make($faker->password),
                 'email' => $faker->unique()->safeEmail,
                 'avatar' => $faker->imageUrl(),
-                'phone' => $faker->phoneNumber,
-                'role' => $faker->randomElement(['admin', 'guest', 'lessor']),
-            ]);
+                'phone' => $faker->phoneNumber
+                ]);
         }
     }
 }

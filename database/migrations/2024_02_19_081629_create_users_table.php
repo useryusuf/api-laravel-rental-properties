@@ -14,9 +14,9 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('password');
             $table->string('email');
-            $table->string('avatar');
-            $table->string('phone');
-            $table->enum('role', ['admin', 'lessor', 'guest'])->default('guest');
+            $table->string('avatar')->default('');
+            $table->string('phone')->nullable();
+            $table->enum('role', ['admin', 'user'])->default('user');
             $table->timestamps();
         });
     }

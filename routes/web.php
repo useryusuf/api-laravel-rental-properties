@@ -14,9 +14,3 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Route::get('/', [HomeController::class, "index"]);
-
-Route::get('/', function () {
-    return 'hello';
-});
