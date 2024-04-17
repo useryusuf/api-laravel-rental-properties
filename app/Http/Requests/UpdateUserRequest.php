@@ -22,15 +22,20 @@ class UpdateUserRequest extends FormRequest
         if ($method == 'PUT') {
             return
                 [
-                    'firstname' => 'required|min:2|max:15',
-                    'lastname' => 'required|min:2|max:15',
+                    'firstname' => 'required|min:2|max:25',
+                    'lastname' => 'required|min:2|max:25',
                     'email' => 'required|email|unique:users,email'
                 ];
         } else {
             return [
-                'firstname' => 'sometimes|required|min:2|max:15',
-                'lastname' => 'sometimes|required|min:2|max:15',
-                'email' => 'sometimes|required|email|unique:users,email'
+                'firstname' => 'sometimes|min:2|max:25',
+                'lastname' => 'sometimes|min:2|max:25',
+                'email' => 'sometimes|email|unique:users,email',
+                'phone1' => 'sometimes|string|digits:10',
+                'phone2' => 'sometimes|string|digits:10',
+                'name' => 'sometimes|string|max:50|unique:users,email',
+                'address' => 'sometimes|string|max:255|min:15',
+
             ];
         }
     }

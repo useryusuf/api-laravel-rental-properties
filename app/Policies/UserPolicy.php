@@ -28,6 +28,7 @@ class UserPolicy
         return $user->id === $lessor->id || $user->isAdmin();
     }
 
+
     public function create(User $user)
     {
         return $user->isAdmin();
