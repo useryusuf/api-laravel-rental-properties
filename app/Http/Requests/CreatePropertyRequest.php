@@ -31,9 +31,10 @@ class CreatePropertyRequest extends FormRequest
             'rentingType' => 'required|in:monthly,daily,yearly',
             'readyDate' => 'required|date',
             'rooms' => 'required|integer|min:1',
+            'baths' => 'required|integer|min:1',
             'categoryId' => 'required|exists:categories,id',
             'userId' => 'required|exists:users,id',
-            'features' => 'sometimes|in:garage, internet, pool, fireplace, garden, balcony',
+            'features' => 'sometimes|in:garage,roof, internet, pool, fireplace, garden, balcony',
         ];
     }
     protected function prepareForValidation()

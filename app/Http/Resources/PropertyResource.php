@@ -25,7 +25,7 @@ class PropertyResource extends JsonResource
             'rentingType' => $this->renting_type,
             'readyDate' => $this->ready_date,
             'rooms' => $this->rooms,
-            'images' => $this->images,
+            'images' => json_decode($this->images),
             'category' => $this->category,
             'lessorId' => $this->user_id,
             "likes" => LikeResource::collection($this->likes),

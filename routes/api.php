@@ -6,7 +6,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\LessorController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\PropertyImageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +38,9 @@ Route::get('/categories/{id}', [CategoryController::class, 'show']);
 Route::group(["middleware" => ["auth:sanctum"]], function () {
   Route::post('/logout', [AuthController::class, "logout"]);
   Route::resource("/properties", PropertyController::class)->except(['create', "edit", "index", "show"]);
-  Route::resource("/users", UserController::class)->except(['create', "edit"]);
   Route::resource("/cities", CityController::class)->except(['index', "show", "edit", "create"]);
+  Route::resource("/categories", CategoryController::class)->except(['index', "show", "edit", "create"]);
+  Route::resource("/users", UserController::class)->except(['create', "edit"]);
+  Route::post('/properties/{id}/images', [PropertyController::class, "upload"]);
+  Route::post('/users/{id}/images', [UserController::class, "upload"]);
 });
-Route::resource("/categories", CategoryController::class)->except(['index', "show", "edit", "create"]);

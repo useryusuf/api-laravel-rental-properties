@@ -17,9 +17,10 @@ return new class extends Migration
             $table->foreignId('city_id')->constrained()->onDelete('cascade');
             $table->string('address');
             $table->enum('renting_type', ["monthly", "daily", "yearly"]);
-            $table->enum('features', ['garage', 'internet', 'pool', 'fireplace', 'garden', 'balcony'])->nullable();
+            $table->enum('features', ['garage', "roof", 'internet', 'pool', 'fireplace', 'garden', 'balcony'])->nullable();
             $table->date('ready_date');
             $table->integer('rooms');
+            $table->integer('baths')->default(1);
             $table->string('images')->nullable();
             $table->enum('status', ["active", "inactive"])->default("inactive");
             $table->foreignId('category_id')->constrained('categories')->onDelete("cascade");
