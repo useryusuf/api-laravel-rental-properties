@@ -16,6 +16,7 @@ class PropertyPolicy
     }
 
 
+
     public function update(User $user, Property $property)
     {
 
