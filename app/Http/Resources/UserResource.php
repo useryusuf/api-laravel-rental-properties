@@ -9,22 +9,26 @@ class UserResource extends JsonResource
 {
     public function toArray($request)
     {
+
         return [
             'id' => $this->id,
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
-            'name' => $this->lastname,
-            'address' => $this->lastname,
-            'email' => $this->email,
-            "avatar" => $this->avatar,
-            "phone1" => $this->avatar,
-            "phone2" => $this->avatar,
             "role" => $this->role,
-            "properties" => PropertyResource::collection($this->whenLoaded("properties")),
+            'name' => $this->name,
+            'email' => $this->email,
+            'address' => $this->address,
+            "avatar" => $this->avatar,
+            "phone1" => $this->phone1,
+            "phone2" => $this->phone2,
             "createdAt" => $this->created_at,
             "updatedAt" => $this->updated_at,
             "rating" => $this->reviews_count,
-            "properties" => $this->properties,
+            "likes" => LikeResource::collection($this->likes),
+            "reviews" => ReviewResource::collection($this->reviews),
+            "comments" => CommentResource::collection($this->comments),
+            "properties" => PropertyResource::collection($this->properties),
+            "rating" => $this->reviews_count,
         ];
     }
 }

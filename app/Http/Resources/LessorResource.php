@@ -20,13 +20,15 @@ class LessorResource extends JsonResource
             'lastname' => $this->lastname,
             'name' => $this->name,
             'email' => $this->email,
-            'address' => $this->lastname,
+            'address' => $this->address,
             "avatar" => $this->avatar,
             "phone1" => $this->phone1,
             "phone2" => $this->phone2,
-            "properties" => PropertyResource::collection($this->whenLoaded("properties")),
+            "likes" => LikeResource::collection($this->likes),
+            "reviews" => ReviewResource::collection($this->reviews),
+            "comments" => CommentResource::collection($this->comments),
+            "properties" => PropertyResource::collection($this->properties),
             "rating" => $this->reviews_count,
-            "properties" => $this->properties,
         ];
     }
 }
