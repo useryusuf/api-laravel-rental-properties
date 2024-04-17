@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +18,15 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::post('/login', [AuthController::class, "login"]);
+
+
+Route::post('/login', [AuthController::class, "login"])->name("login");
 Route::post('/signup', [AuthController::class, "signup"]);
+
+Route::get('/properties', [PropertyController::class, 'index']);
 
 Route::group(["middleware" => ["auth:sanctum"]], function () {
   Route::post('/logout', [AuthController::class, "logout"]);
+  Route::resource("/properties", PropertyController::class)->except(['create', "edit", "index"]);
+  Route::resource("/users", UserController::class)->except(['create', "edit"]);
 });

@@ -13,7 +13,7 @@ class ReviewSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1, 10) as $index) {
+        foreach (range(1, 50) as $index) {
             Review::create([
                 'property_id' => $faker->numberBetween(1, 10),
                 'user_id' => $faker->numberBetween(1, 10),

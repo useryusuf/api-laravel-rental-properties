@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +12,21 @@ class User  extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = ['first_name', 'last_name', 'password', 'email', 'phone'];
+    protected $fillable = ['firstname', 'lastname', 'password', 'email', 'phone'];
+
+    protected $appends = ['rating_score'];
+
+    public function getRatingScoreAttribute()
+    {
+        if ($this->reviews_count > 0) {
+            $totalRating = $this->reviews->sum('rating');
+            $maxRating = $this->reviews_count * 5;
+
+            return ($totalRating / $maxRating) * 5;
+        }
+
+        return 0;
+    }
 
     public function properties()
     {
@@ -31,5 +46,9 @@ class User  extends Authenticatable
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
     }
 }

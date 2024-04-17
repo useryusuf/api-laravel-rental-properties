@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Property extends Model
 {
     use HasFactory;
-    protected $fillable = ['description', 'price', 'city_id', 'address', 'images', 'is_active', 'category_id', 'user_id'];
+    protected $fillable = ['description', 'price', "space", "deposite", "ready_date", "rooms", 'city_id', 'address', 'images', 'is_active', 'category_id', 'user_id'];
 
     public function city()
     {
@@ -29,6 +29,8 @@ class Property extends Model
     {
         return $this->hasMany(Like::class);
     }
+
+
 
     public function comments()
     {

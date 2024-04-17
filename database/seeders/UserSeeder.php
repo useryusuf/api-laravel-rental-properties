@@ -10,20 +10,22 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-     public function run()
+    public function run()
     {
 
         $faker = Faker::create();
 
-        foreach (range(1, 10) as $index) {
+        foreach (range(1, 50) as $index) {
             User::create([
-                'first_name' => $faker->firstName,
-                'last_name' => $faker->lastName,
+                'firstname' => $faker->firstName,
+                'name' => $faker->firstName,
+                'lastname' => $faker->lastName,
                 'password' => Hash::make($faker->password),
                 'email' => $faker->unique()->safeEmail,
                 'avatar' => $faker->imageUrl(),
-                'phone' => $faker->phoneNumber
-                ]);
+                'phone1' => $faker->phoneNumber,
+                'phone2' => $faker->phoneNumber
+            ]);
         }
     }
 }

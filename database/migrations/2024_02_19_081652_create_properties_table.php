@@ -12,12 +12,19 @@ return new class extends Migration
             $table->id();
             $table->text('description');
             $table->decimal('price', 8, 2);
-            $table->foreignId('city_id')->constrained();
+            $table->decimal('deposite', 8, 2)->default(0);
+            $table->decimal('space', 8, 2);
+            $table->foreignId('city_id')->constrained()->onDelete('cascade');
             $table->string('address');
-            $table->string('images');
-            $table->boolean('is_active');
-            $table->foreignId('category_id')->constrained('categories'); // Assuming a 'categories' table exists
-            $table->foreignId('user_id')->constrained();
+            $table->enum('renting_type', ["monthly", "daily", "yearly"]);
+            $table->enum('features', ['garage', 'internet', 'pool', 'fireplace', 'garden', 'balcony'])->nullable();
+            $table->date('ready_date');
+            $table->integer('rooms');
+            $table->string('images')->nullable();
+            $table->enum('status', ["active", "inactive"])->default("inactive");
+            $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
             $table->timestamps();
         });
     }
