@@ -28,6 +28,7 @@ Route::post('/signup', [AuthController::class, "signup"]);
 
 Route::get('/properties', [PropertyController::class, 'index']);
 Route::get('/properties/{id}', [PropertyController::class, 'show']);
+Route::get('/properties/{id}/likes', [PropertyController::class, 'likes']);
 
 Route::get('/lessors', [LessorController::class, 'index']);
 Route::get('/lessors/{id}', [LessorController::class, 'show']);
@@ -45,4 +46,6 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
   Route::resource("/users", UserController::class)->except(['create', "edit"]);
   Route::post('/users/{id}/images', [UserController::class, "upload"]);
   Route::post('/users/{id}/password', [UserController::class, 'updatePassword']);
+  Route::post('/properties/{id}/like', [PropertyController::class, 'like']);
+  Route::post('/properties/{id}/unlike', [PropertyController::class, 'unlike']);
 });

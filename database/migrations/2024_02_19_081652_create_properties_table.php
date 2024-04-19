@@ -11,11 +11,11 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->text('description');
-            $table->decimal('price', 8, 2);
-            $table->decimal('deposite', 8, 2)->default(0);
-            $table->decimal('space', 8, 2);
+            $table->decimal('price', 12, 2);
+            $table->decimal('deposite', 12, 2)->default(0);
+            $table->decimal('space', 12, 2);
             $table->foreignId('city_id')->constrained()->onDelete('cascade');
-            $table->string('address');
+            $table->text('address');
             $table->enum('renting_type', ["monthly", "daily", "yearly"]);
             $table->enum('features', ['garage', "roof", 'internet', 'pool', 'fireplace', 'garden', 'balcony'])->nullable();
             $table->date('ready_date');
